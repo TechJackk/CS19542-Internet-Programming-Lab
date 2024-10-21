@@ -1,17 +1,30 @@
 # Smart Hotel Booking
 
-## Description
-Smart Hotel Booking is a web application that allows users to view and book hotel rooms efficiently. The app provides a user-friendly interface and leverages modern technologies for a seamless booking experience.
+**Smart Hotel Booking** is a comprehensive web application designed to simplify the hotel booking process for users. This user-friendly platform enables customers to effortlessly view available hotel rooms, check their status, and make reservations with just a few clicks. Built using modern web technologies, the application ensures a seamless and responsive experience across various devices.
 
-## Features
-- View available hotel rooms
-- Book a room with real-time availability
-- View your bookings
-- Cancel bookings
+## Key Features:
+- **Room Management**: Users can explore a diverse selection of rooms with detailed information.
+- **Real-Time Availability**: The application provides real-time updates on room availability, ensuring users can book rooms that meet their needs.
+- **Easy Booking Process**: With a streamlined booking process, users can quickly reserve their desired room by entering basic information.
+- **View Bookings**: Users can easily access their booking history and details, enabling better management of their reservations.
+- **Secure Data Handling**: User data is managed securely, ensuring privacy and protection throughout the booking process.
+
+Whether you are planning a vacation or a business trip, **Smart Hotel Booking** offers an efficient and enjoyable way to secure accommodations that fit your preferences. Experience hassle-free hotel bookings today!
+
+## Technologies Used
+- React
+- Node.js
+- Express
+- MySQL
 
 ## Screenshots
+RoomsPage
 ![Rooms Page](/RoomList.png)
+
+BookingPage
 ![Booking Page](/Booking.png)
+
+MyBookingsPage
 ![View Bookings Page](/MyBookings.png)
 
 ## Installation
@@ -41,9 +54,3 @@ Smart Hotel Booking is a web application that allows users to view and book hote
    
 ## License
 This project is licensed under the MIT License.
-
-### Instructions to Modify:
-
-1. **Images**: Replace `/Booking.png` and `/MyBookings.png` with the actual paths to your images.
-   
-2. **License**: MIT
