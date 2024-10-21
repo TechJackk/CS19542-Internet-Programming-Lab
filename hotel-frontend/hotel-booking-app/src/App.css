@@ -1,0 +1,117 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.navbar-brand:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.navbar-brand{
+  overflow:hidden;
+}
+.navbar{
+  overflow: hidden;
+}
+
+/* App.css */
+
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 100%; /* Ensure container fits within viewport width */
+  padding: 15px; /* Padding is responsive */
+}
+
+/* Ensure the images are responsive */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Ensure buttons and other components don't overflow */
+button, .btn {
+  width: 100%; /* On mobile, let buttons take up full width */
+  max-width: 100%;
+}
+
+/* Card responsiveness */
+.card {
+  margin-bottom: 20px;
+}
+
+/* Prevent container from expanding beyond viewport */
+.booking-form-container {
+  width: 100%;
+  max-width: 100vw; /* Ensure no overflow on the width */
+}
+
+/* Ensure content inside the form is responsive */
+.form-container {
+  width: 100%;
+  max-width: 500px; /* Limit the form container's max width */
+}
+
+/* Adjust Bootstrap grid for small devices */
+@media (max-width: 767px) {
+  .navbar {
+    padding: 10px;
+  }
+  .container {
+    padding: 0 10px;
+  }
+  .form-container {
+    padding: 10px;
+  }
+}
+
+.navbar{
+  border-radius: 5px;
+}
+.container{
+  padding-top: 8px;
+}
+
+
+
