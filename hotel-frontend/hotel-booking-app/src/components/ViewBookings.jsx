@@ -1,4 +1,3 @@
-// ViewBookings.jsx
 import React, { useState } from 'react';
 import { Form, Button, Container, Table } from 'react-bootstrap';
 

@@ -90,9 +90,7 @@ app.get('/bookings/:email', (req, res) => {
 // Delete a booking and update the room status
 app.delete('/bookings/:id', (req, res) => {
     const bookingId = req.params.id;
-    console.log('bookingId');
-
-    // Get the room_id of the booking to update room status
+    //console.log('bookingId');
     const getRoomQuery = 'SELECT room_id FROM bookings WHERE id = ?';
     db.query(getRoomQuery, [bookingId], (err, results) => {
         if (err) {
