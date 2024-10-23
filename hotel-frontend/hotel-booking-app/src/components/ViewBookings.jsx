@@ -69,7 +69,7 @@ const ViewBookings = () => {
               <th>CUST. Id</th>
               <th>CUST. Name</th>
               <th>CUST. Email</th>
-              <th>Booked Room No</th>
+              <th>Booked Room NO</th>
               <th>Action</th>
             </tr>
           </thead>
