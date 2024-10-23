@@ -66,7 +66,7 @@ const ViewBookings = () => {
         <Table striped bordered hover className="mt-4">
           <thead>
             <tr>
-              <th>CUST. ID</th>
+              <th>CUST. Id</th>
               <th>CUST. Name</th>
               <th>CUST. Email</th>
               <th>Booked Room No</th>
