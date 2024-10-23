@@ -30,11 +30,10 @@ const ViewBookings = () => {
         method: 'DELETE',
       });
       if (response.ok) {
-        // Remove the cancelled booking from the state to update the UI
-        setBookings(bookings.filter(booking => booking.id !== bookingId));
+        setBookings(bookings.filter(booking => booking.room_id !== bookingId));
         alert('Booking cancelled successfully.');
       } else {
-        alert('cancel booking.');
+        alert('failed to cancel booking.');
       }
     } catch (error) {
       console.error('Error:', error);
@@ -84,7 +83,7 @@ const ViewBookings = () => {
                 <td>
                   <Button
                     variant="danger"
-                    onClick={() => handleCancelBooking(booking.id)}
+                    onClick={() => handleCancelBooking(booking.room_id)}
                   >
                     Cancel Booking
                   </Button>

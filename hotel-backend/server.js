@@ -1,16 +1,15 @@
 const express = require('express');
 const mysql = require('mysql2');
-const cors = require('cors'); // Import CORS
+const cors = require('cors'); 
 require('dotenv').config();
 
 const app = express();
 const PORT = 5001;
 
 // Middleware to enable CORS and parse JSON
-app.use(cors()); // Enable CORS
+app.use(cors()); 
 app.use(express.json());
 
-// MySQL connection using environment variables from process.env
 const db = mysql.createConnection({
     host: process.env.DB_HOST,       // Loaded from .env file
     user: process.env.DB_USER,       // Loaded from .env file
@@ -25,7 +24,6 @@ db.connect((err) => {
     console.log('MySQL connected...');
 });
 
-// Fetch all rooms
 app.get('/rooms', (req, res) => {
     const query = 'SELECT * FROM rooms';
     db.query(query, (err, results) => {
@@ -36,11 +34,9 @@ app.get('/rooms', (req, res) => {
     });
 });
 
-// Handle room bookings
 app.post('/bookings', (req, res) => {
     const { name, email, room_id } = req.body;
 
-    // Check if the room is already booked
     const checkRoomQuery = 'SELECT status FROM rooms WHERE id = ?';
     db.query(checkRoomQuery, [room_id], (err, results) => {
         if (err) {
@@ -90,19 +86,7 @@ app.get('/bookings/:email', (req, res) => {
 // Delete a booking and update the room status
 app.delete('/bookings/:id', (req, res) => {
     const bookingId = req.params.id;
-    //console.log('bookingId');
-    const getRoomQuery = 'SELECT room_id FROM bookings WHERE id = ?';
-    db.query(getRoomQuery, [bookingId], (err, results) => {
-        if (err) {
-            return res.status(500).json({ error: err.message });
-        }
-        if (results.length === 0) {
-            return res.status(404).json({ message: 'Booking not found' });
-        }
-
-        const roomId = results[0].room_id;
-
-        // Delete the booking from bookings table
+    //console.log(bookingId);
         const deleteBookingQuery = 'DELETE FROM bookings WHERE room_id = ?';
         db.query(deleteBookingQuery, [bookingId], (err) => {
             if (err) {
@@ -111,17 +95,15 @@ app.delete('/bookings/:id', (req, res) => {
 
             // Update the room status to 'available'
             const updateRoomStatusQuery = 'UPDATE rooms SET status = ? WHERE id = ?';
-            db.query(updateRoomStatusQuery, ['available', roomId], (err) => {
+            db.query(updateRoomStatusQuery, ['available', bookingId], (err) => {
                 if (err) {
                     return res.status(500).json({ error: err.message });
                 }
                 res.status(200).json({ message: 'Booking cancelled and room status updated' });
             });
         });
-    });
 });
 
-// Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
