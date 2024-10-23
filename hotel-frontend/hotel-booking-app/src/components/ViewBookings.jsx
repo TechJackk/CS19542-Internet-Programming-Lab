@@ -69,8 +69,8 @@ const ViewBookings = () => {
               <th>CUST. ID</th>
               <th>CUST. Name</th>
               <th>CUST. Email</th>
-              <th>Booked Room NO</th>
-              <th>Action</th> {/* Added a column for the cancel button */}
+              <th>Booked Room No</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
