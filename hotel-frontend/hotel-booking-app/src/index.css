@@ -23,6 +23,8 @@ a:hover {
 }
 
 body {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
   margin: 0;
   display: flex;
   place-items: center;
@@ -66,3 +68,67 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.pacifico-regular {
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+.begin-travel{
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  font-size: 250%;
+}
+
+/* <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 400 to 700*/
+
+.caveat-description{
+  font-family: "Caveat", cursive;
+  font-optical-sizing:auto;
+  font-weight: 400;
+  font-size: 150%;
+}
+
+/* Ensure each card is of equal height */
+.demo-grid-item .card {
+  height: 100%; /* Ensures the card takes full available height */
+  display: flex;
+  flex-direction: column; /* Stack the image and content vertically */
+  justify-content: space-between; /* Ensure content is spaced properly */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Ensure image fills the top of the card and maintains aspect ratio */
+.demo-grid-item .card-img-top {
+  width: 100%;
+  height: 200px; /* Set a fixed height for images to ensure uniformity */
+  object-fit: cover; /* Ensures the image fills the area without stretching */
+}
+
+/* Hover effect for demo grid items */
+.demo-grid-item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.demo-grid-item:hover {
+  transform: translateY(-10px); /* Small jump upwards */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Light shadow effect */
+  padding: 0%;
+  padding-top: 1%;
+  margin: 0.00%;
+  border-radius: 2.5%;
+}
+
+/* Optional: A bit stronger shadow on active (click) */
+.demo-grid-item:active {
+  transform: translateY(-5px); /* Less jump when clicked */
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow */
+}
+
+
+
+
+
+
+
