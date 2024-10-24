@@ -6,21 +6,21 @@ const Home = () => {
   const demoSites = [
     {
       id: 1,
-      img: '/public/chennai.jpg',
+      img: '/chennai.jpg',
       title: 'Chennai',
       description: 'Art & Culture . Beaches',
       StartingPrice: 'Fromm Rs.1999'
     },
     {
       id: 2,
-      img: '/public/kochi.jpeg',
+      img: '/kochi.jpeg',
       title: 'Kochi',
       description: 'Nature & Wildlife . Art & Culture',
       StartingPrice: 'Fromm Rs.1899'
     },
     {
       id: 3,
-      img: '/public/goa.jpeg',
+      img: '/goa.jpeg',
       title: 'Goa',
       description: 'Beaches . Food & Drink',
       StartingPrice: 'Fromm Rs.1999'
