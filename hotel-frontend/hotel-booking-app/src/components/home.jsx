@@ -27,35 +27,35 @@ const Home = () => {
     },
     {
       id: 4,
-      img: '/public/agra.jpg',
+      img: '/agra.jpg',
       title: 'Agra',
       description: 'Art & Culture . Food & Drink',
       StartingPrice: 'Fromm Rs.1999'
     },
     {
       id: 5,
-      img: '/public/delhi.jpg',
+      img: '/delhi.jpg',
       title: 'Delhi',
       description: 'Art & Culture . Family',
       StartingPrice: 'Fromm Rs.1999'
     },
     {
       id: 6,
-      img: '/public/mumbai.jpg',
+      img: '/mumbai.jpg',
       title: 'Mumbai',
       description: 'Beaches . Art & Culture',
       StartingPrice: 'Fromm Rs.1999'
     },
     {
       id: 7,
-      img: '/public/bengaluru.webp',
+      img: '/bengaluru.webp',
       title: 'Bengaluru',
       description: 'Nightlife . Art & Culture',
       StartingPrice: 'Fromm Rs.1999'
     },
     {
       id: 8,
-      img: '/public/cuddalore.jpg',
+      img: '/cuddalore.jpg',
       title: 'Cuddalore',
       description: 'Beaches . Luxury textures',
       StartingPrice: 'Fromm Rs.1999'
