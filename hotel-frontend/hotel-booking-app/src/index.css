@@ -114,8 +114,8 @@ button:focus-visible {
 .demo-grid-item:hover {
   transform: translateY(-10px); /* Small jump upwards */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Light shadow effect */
-  padding: 0%;
-  padding-top: 1%;
+  padding: 1%;
+ /* padding-top: 1%;*/
   margin: 0.00%;
   border-radius: 2.5%;
 }

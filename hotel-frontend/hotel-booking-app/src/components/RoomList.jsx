@@ -22,8 +22,17 @@ const RoomList = () => {
 
   return (
     <>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <div className="container">
+            <a className="navbar-brand" href="/" style={{color:'green'}}>Hotel Booking App</a>
+            <a className="navbar-brand" href="/view-bookings" style={{color:'green'}}>View My Bookings</a> {/* Add link */}
+          </div>
+    </nav>
       {/* Content */}
       <div className="container mt-5 pt-5">
+        <div style={{marginBottom:'5%', marginTop:'-3%'}}>
+        <strong style={{fontSize:'200%'}}>Rooms Available at Chennai</strong>
+        </div>
         <Row className="g-4">
           {rooms.map(room => (
             <Col key={room.id} xs={12} md={4}>

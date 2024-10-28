@@ -113,7 +113,7 @@ const Home = () => {
                   />
                   <div className="card-body border-top">
                     <h6 className="mb-0">
-                      <a href="#" className="stretched-link">
+                      <a href="/roomlist" className="stretched-link">
                         {site.title}
                       </a>
                     </h6>

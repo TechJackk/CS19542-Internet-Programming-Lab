@@ -42,6 +42,13 @@ const ViewBookings = () => {
   };
 
   return (
+    <div style={{backgroundColor:'#F4A460', borderRadius:'3%'}}>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <div className="container">
+            <a className="navbar-brand" href="/" style={{color:'green'}}>Hotel Booking App</a>
+            <a className="navbar-brand" href="/view-bookings" style={{color:'green'}}>View My Bookings</a> {/* Add link */}
+          </div>
+        </nav>
     <Container className="mt-5">
       <h2>View My Bookings</h2>
       <Form onSubmit={handleSearch}>
@@ -94,6 +101,7 @@ const ViewBookings = () => {
         </Table>
       )}
     </Container>
+    </div>
   );
 };
 

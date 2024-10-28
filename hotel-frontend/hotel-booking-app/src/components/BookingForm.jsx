@@ -35,7 +35,13 @@ const BookingForm = () => {
 
   return (
     <div>
-      <Container className="bg-white p-5 shadow" style={{ maxWidth: '500px', borderRadius: '10px' }}>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <div className="container">
+            <a className="navbar-brand" href="/" style={{color:'green'}}>Hotel Booking App</a>
+            <a className="navbar-brand" href="/view-bookings" style={{color:'green'}}>View My Bookings</a> {/* Add link */}
+          </div>
+        </nav>
+      <Container className="bg-white p-5 shadow" style={{ maxWidth: '500px', borderRadius: '10px',}}>
         <h2 className="mb-4">Book a Room: {room.name}</h2>
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="name">
