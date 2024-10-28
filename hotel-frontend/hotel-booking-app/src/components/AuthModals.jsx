@@ -2,36 +2,67 @@ import React, { useState } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 import axios from 'axios';
 
-export const SignInModal = ({ show, handleClose }) => (
-    <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-            <Modal.Title>Sign In</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-            <Form>
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" required />
-                </Form.Group>
-                <Form.Group controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" required />
-                    <a 
-                        style={{ color: 'red', fontSize: '80%', cursor: 'pointer' }} 
-                        onClick={() => alert('Forgot password functionality here')}
-                    >
-                        forgot password?
-                    </a>
-                </Form.Group>
-                <Button variant="primary" type="submit" style={{ marginTop: '2%' }}>
-                    Sign In
-                </Button>
-            </Form>
-        </Modal.Body>
-    </Modal>
-);
+export const SignInModal = ({ show, handleClose, onAuthSuccess }) => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
 
-export const SignUpModal = ({ show, handleClose }) => {
+    const handleSignIn = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await axios.post('http://localhost:5001/signin', {
+                email,
+                password
+            });
+            setSuccessMessage(response.data.message);
+            setErrorMessage('');
+            onAuthSuccess(); // Call onAuthSuccess on successful sign-in
+        } catch (error) {
+            setErrorMessage(error.response?.data?.message || 'Error occurred');
+        }
+    };
+
+    return (
+        <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+                <Modal.Title>Sign In</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Form onSubmit={handleSignIn}>
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control
+                            type="email"
+                            placeholder="Enter email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                    </Form.Group>
+                    <Form.Group controlId="formBasicPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control
+                            type="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </Form.Group>
+                    <Button variant="primary" type="submit" style={{ marginTop: '2%' }}>
+                        Sign In
+                    </Button>
+                    {errorMessage && <p style={{ color: 'red', marginTop: '1em' }}>{errorMessage}</p>}
+                    {successMessage && <p style={{ color: 'green', marginTop: '1em' }}>{successMessage}</p>}
+                </Form>
+            </Modal.Body>
+        </Modal>
+    );
+};
+
+export const SignUpModal = ({ show, handleClose, onAuthSuccess }) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -64,6 +95,7 @@ export const SignUpModal = ({ show, handleClose }) => {
             setEmail('');
             setPassword('');
             setConfirmPassword('');
+            onAuthSuccess(); // Call onAuthSuccess on successful sign-up
         } catch (error) {
             setErrorMessage(error.response?.data?.message || 'Error occurred');
             setSuccessMessage('');

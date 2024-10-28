@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Navbar, Nav, Container, Form, Button } from 'react-bootstrap';
 import { SignInModal, SignUpModal } from './AuthModals'; // Import the modals
+import { FaUserCircle } from 'react-icons/fa'; // Import a user icon for the circular button
 
 const Home = () => {
   const [cities, setCities] = useState([]);
   const [showSignIn, setShowSignIn] = useState(false); // State for Sign In modal
   const [showSignUp, setShowSignUp] = useState(false); // State for Sign Up modal
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // State to track authentication status
 
   useEffect(() => {
     fetch('http://localhost:5001/cities')
@@ -27,6 +29,12 @@ const Home = () => {
     setShowSignUp(false);
   };
 
+  // Function to handle successful sign-in/sign-up
+  const handleAuthSuccess = () => {
+    setIsAuthenticated(true);
+    handleClose(); // Close the modals after successful auth
+  };
+
   return (
     <div>
       {/* Custom Navbar using React-Bootstrap */}
@@ -34,25 +42,37 @@ const Home = () => {
         <Container fluid>
           <Navbar.Brand href="#">StaySmart</Navbar.Brand>
           <div>
-          <Navbar.Toggle aria-controls="navbarCollapse" />
+            <Navbar.Toggle aria-controls="navbarCollapse" />
           </div>
           <Navbar.Collapse id="navbarCollapse">
             <Nav className="me-auto">
               <Nav.Link href="#">Register My Hotel</Nav.Link>
               <Nav.Link href="/view-bookings">View My Bookings</Nav.Link>
-             {/* <Nav.Link disabled aria-disabled="true">Disabled</Nav.Link> */}
             </Nav>
             <Form className="d-flex">
-              <Button className='me-2' variant='outline-success' onClick={handleShowSignIn}>SignIn</Button>
-              <Button variant="outline-success" onClick={handleShowSignUp}>SignUp</Button>
+              {isAuthenticated ? (
+                <Button 
+                  variant="outline-success" 
+                  className="rounded-circle"
+                  style={{ width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                  onClick={() => alert('User Profile')} // Placeholder for user profile navigation
+                >
+                  <FaUserCircle size={30} />
+                </Button>
+              ) : (
+                <>
+                  <Button className='me-2' variant='outline-success' onClick={handleShowSignIn}>SignIn</Button>
+                  <Button variant="outline-success" onClick={handleShowSignUp}>SignUp</Button>
+                </>
+              )}
             </Form>
           </Navbar.Collapse>
         </Container>
       </Navbar>
 
       {/* Include the modals */}
-      <SignInModal show={showSignIn} handleClose={handleClose} />
-      <SignUpModal show={showSignUp} handleClose={handleClose} />
+      <SignInModal show={showSignIn} handleClose={handleClose} onAuthSuccess={handleAuthSuccess} />
+      <SignUpModal show={showSignUp} handleClose={handleClose} onAuthSuccess={handleAuthSuccess} />
 
       {/* Main Section */}
       <section id="demos">
@@ -105,14 +125,27 @@ const Home = () => {
       </section>
 
       <div className="px-4 pt-5 my-5 text-center border-bottom">
-        <h1 className="display-4 fw-bold text-body-emphasis">Why are you waiting???</h1>
-        <div className="col-lg-6 mx-auto">
-          <p className="lead mb-4" style={{ marginTop: '3%' }}>StaySmart - Where Comfort Meets Convenience</p>
-          <p className="lead mb-4">Join Nowwww!</p>
-          <div className="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
-            <Button variant="outline-success" className="btn-lg px-4 me-sm-3" onClick={handleShowSignIn}>SignIn</Button>
-            <Button variant="outline-success" className="btn-lg px-4" onClick={handleShowSignUp}>SignUp</Button>
-          </div>
+      <div>
+            {isAuthenticated ? (
+                <h1 className="display-4 fw-bold text-body-emphasis" style={{marginTop:'-4%', marginBottom:'3%'}}>Welcome!!!</h1>
+            ) : (
+                <>
+                <div>
+            <h1 className="display-4 fw-bold text-body-emphasis">Why are you waiting???</h1>
+            <div className="col-lg-6 mx-auto">
+              <p className="lead mb-4" style={{ marginTop: '3%' }}>StaySmart - Where Comfort Meets Convenience</p>
+              <p className="lead mb-4">Join Nowwww!</p>
+              <div className="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+                <Button variant="outline-success" className="btn-lg px-4 me-sm-3" onClick={handleShowSignIn}>SignIn</Button>
+                <Button variant="outline-success" className="btn-lg px-4" onClick={handleShowSignUp}>SignUp</Button>
+              </div>
+            </div>
+        </div>
+                </>
+            )}
+
+            <SignInModal show={showSignIn} handleClose={() => setShowSignIn(false)} onAuthSuccess={handleAuthSuccess} />
+            <SignUpModal show={showSignUp} handleClose={() => setShowSignUp(false)} onAuthSuccess={handleAuthSuccess} />
         </div>
         <div className="overflow-hidden" style={{ maxHeight: '30vh' }}>
           <div className="container px-5">

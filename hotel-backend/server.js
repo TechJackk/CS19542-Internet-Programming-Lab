@@ -115,7 +115,6 @@ app.post('/signup', async (req, res) => {
         // Check if user already exists
         const [results] = await pool.query('SELECT * FROM users WHERE email = ?', [email]);
 
-        // Check if the results array is defined and has any users
         if (results.length > 0) {
             return res.status(400).json({ message: 'Email is already registered' });
         }
@@ -130,6 +129,34 @@ app.post('/signup', async (req, res) => {
         res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
         console.error('Signup Error:', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
+// Signin route
+app.post('/signin', async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        // Check if the user exists
+        const [results] = await pool.query('SELECT * FROM users WHERE email = ?', [email]);
+
+        if (results.length === 0) {
+            return res.status(400).json({ message: 'Invalid email or password' });
+        }
+
+        const user = results[0]; // Get the first user from results
+
+        // Check if the password matches
+        const isPasswordValid = await bcrypt.compare(password, user.password_hash);
+        if (!isPasswordValid) {
+            return res.status(400).json({ message: 'Invalid email or password' });
+        }
+
+        // If everything is OK, return success response
+        res.status(200).json({ message: 'Sign in successful', user: { id: user.id, name: user.name, email: user.email } });
+    } catch (error) {
+        console.error('Signin Error:', error);
         res.status(500).json({ message: 'Server error' });
     }
 });
